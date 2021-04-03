@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-import All from './All';
-import County from './County';
 
 const all_url = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$top=30&$format=JSON';
 const pre_url = 'https://ptx.transportdata.tw/MOTC/v2/Tourism';
@@ -162,5 +160,26 @@ export default class App extends React.Component{
             <div class="info" id="info"></div>,
             <button id="gotop" onClick={this.gotop}></button>]
         );
+    }
+}
+
+class All extends React.Component{
+    render(){
+        document.getElementById('info').innerHTML="";
+        skip_num = 0;
+        cur = all_url;
+        fetchData(pre_url+this.props.match.url+"?$top=30&$format=JSON");
+        return null;
+    }
+}
+
+class County extends React.Component{
+    render(){
+        document.getElementById('info').innerHTML="";
+        skip_num = 0;
+        placename = this.props.match.url;
+        cur = pre_url+placename+"?$top=30&$format=JSON";
+        fetchData(pre_url+this.props.match.url+"?$top=30&$format=JSON");
+        return null;
     }
 }
