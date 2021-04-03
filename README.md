@@ -1,5 +1,5 @@
 # Dcard-demo
-## How to Work?
+## 如何執行程式?
 1. 安裝npm modules
     * 在Terminal執行`npm install`
 2. 在`package.json`檔案中修改電腦的IP位址
