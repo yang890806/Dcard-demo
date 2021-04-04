@@ -24,19 +24,12 @@
 ![圖片 1](https://user-images.githubusercontent.com/52899009/113510528-ed5aa480-958d-11eb-9066-7362d3e2afb2.png)
 ## 目錄結構
 .
-
 ├── image
-
 │   ├── gotop.png
-
 │   ├── gotop2.png
-
 │   ├── location.png
-
 │   └── logo.png
-
 ├── index.css
-
 ├── index.html
 
 └── js
