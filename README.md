@@ -22,3 +22,35 @@
 3. 在Terminal中執行`npm run dev`即可
 ## 網站架構
 ![圖片 1](https://user-images.githubusercontent.com/52899009/113510528-ed5aa480-958d-11eb-9066-7362d3e2afb2.png)
+## 目錄結構
+├── README.md
+├── babel.config.json
+├── dist
+│   ├── image
+│   │   ├── gotop.png
+│   │   ├── gotop2.png
+│   │   ├── location.png
+│   │   └── logo.png
+│   ├── index.css
+│   ├── index.html
+│   └── js
+│       ├── index.js
+│       └── index.js.LICENSE.txt
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── src
+│   ├── components
+│   │   ├── All.js
+│   │   ├── App.js
+│   │   └── County.js
+│   ├── image
+│   │   ├── gotop.png
+│   │   ├── gotop2.png
+│   │   ├── location.png
+│   │   └── logo.png
+│   ├── index.html
+│   ├── index.js
+│   └── scss
+│       └── index.scss
+└── webpack.config.js
