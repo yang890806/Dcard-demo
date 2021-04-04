@@ -22,7 +22,7 @@
 3. 在Terminal中執行`npm run dev`即可
 ## 網站架構
 ![圖片 1](https://user-images.githubusercontent.com/52899009/113510528-ed5aa480-958d-11eb-9066-7362d3e2afb2.png)
-## 目錄結構
+## 目錄結構 (dist檔案夾)
 ```
 .  
 ├── image  
