@@ -186,7 +186,6 @@ class County extends React.Component{
         skip_num = 0;
         placename = this.props.match.url;
         cur = pre_url+placename+"?$top=30&$format=JSON";
-        alert(pre_url+this.props.match.url+"?$top=30&$format=JSON");
         fetchData(pre_url+this.props.match.url+"?$top=30&$format=JSON");
         return null;
     }
