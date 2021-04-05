@@ -45,11 +45,8 @@ function fetchData(cur_url){
 
         },
         error: function(xhr){
-            if (xhr.status!=404)
-                alert("發生錯誤: "+xhr.status+" "+xhr.statusText);
-            else{
+            if (xhr.status==404)
                 stopupdate = true;
-            }
         }
     });
 }
@@ -189,6 +186,7 @@ class County extends React.Component{
         skip_num = 0;
         placename = this.props.match.url;
         cur = pre_url+placename+"?$top=30&$format=JSON";
+        alert(pre_url+this.props.match.url+"?$top=30&$format=JSON");
         fetchData(pre_url+this.props.match.url+"?$top=30&$format=JSON");
         return null;
     }
