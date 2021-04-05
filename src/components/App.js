@@ -6,6 +6,7 @@ const pre_url = 'https://ptx.transportdata.tw/MOTC/v2/Tourism';
 var placename = 'Taipei';
 var skip_num = 0;
 var cur = all_url;
+var stopupdate = false;
 require('location.png');
 require('logo.png');
 
@@ -46,6 +47,9 @@ function fetchData(cur_url){
         error: function(xhr){
             if (xhr.status!=404)
                 alert("發生錯誤: "+xhr.status+" "+xhr.statusText);
+            else{
+                stopupdate = true;
+            }
         }
     });
 }
@@ -57,10 +61,12 @@ $(function (){ //滑到底部時，額外加入30個景點
         let sTop = document.documentElement.scrollTop;
         if(sHeight == cHeight+ sTop) {
             skip_num += 30;
-            if (cur==all_url)
-                fetchData('https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$top=30&$skip='+skip_num+'&$format=JSON');
-            else
-                fetchData('https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/'+placename+'?$top=30&$skip='+skip_num+'&$format=JSON');
+            if (!stopupdate){
+                if (cur==all_url)
+                    fetchData('https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$top=30&$skip='+skip_num+'&$format=JSON');
+                else
+                    fetchData('https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/'+placename+'?$top=30&$skip='+skip_num+'&$format=JSON');
+            }
         }
     }
 })
@@ -84,6 +90,10 @@ export default class App extends React.Component{
         $("#myDropdown").toggleClass("show");
     }
 
+    stopstate(){
+        stopupdate = false;
+    }
+
     render(){
         fetchData(cur);
         return ([
@@ -93,40 +103,40 @@ export default class App extends React.Component{
                         <img id="nav_logo" src="../image/logo.png"/>
                     </li>
                     <li class="nav-item">
-                        <Link class="nav-link" to="/scenicSpot" ><span>全部景點</span></Link>
+                        <Link class="nav-link" to="/scenicSpot" onClick={this.stopstate}><span>全部景點</span></Link>
                     </li>
                     <li class="nav-item">
                         <button class="dropbtn" onClick={this.dropbtnclick}><span>縣市景點</span></button>
                         <div id="myDropdown" class="dropdown-content">
                             <div>
-                                <Link class="nav-link" to={"/scenicSpot/Taipei"}><span>臺北市</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/NewTaipei"}><span>新北市</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/Taoyuan"}><span>桃園市</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/Taichung"}><span>臺中市</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/Tainan"}><span>臺南市</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/Kaohsiung"}><span>高雄市</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/Taipei"} onClick={this.stopstate}><span>臺北市</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/NewTaipei"} onClick={this.stopstate}><span>新北市</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/Taoyuan"} onClick={this.stopstate}><span>桃園市</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/Taichung"} onClick={this.stopstate}><span>臺中市</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/Tainan"} onClick={this.stopstate}><span>臺南市</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/Kaohsiung"} onClick={this.stopstate}><span>高雄市</span></Link>
                             </div>
                             <div>
-                                <Link class="nav-link" to={"/scenicSpot/Keelung"}><span>基隆市</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/Hsinchu"}><span>新竹市</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/HsinchuCounty"}><span>新竹縣</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/MiaoliCounty"}><span>苗栗縣</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/ChanghuaCounty"}><span>彰化縣</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/NantouCounty"}><span>南投縣</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/Keelung"} onClick={this.stopstate}><span>基隆市</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/Hsinchu"} onClick={this.stopstate}><span>新竹市</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/HsinchuCounty"} onClick={this.stopstate}><span>新竹縣</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/MiaoliCounty"} onClick={this.stopstate}><span>苗栗縣</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/ChanghuaCounty"} onClick={this.stopstate}><span>彰化縣</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/NantouCounty"} onClick={this.stopstate}><span>南投縣</span></Link>
                             </div>
                             <div>
-                                <Link class="nav-link" to={"/scenicSpot/YunlinCounty"}><span>雲林縣</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/ChiayiCounty"}><span>嘉義縣</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/Chiayi"}><span>嘉義市</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/PingtungCounty"}><span>屏東縣</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/YilanCounty"}><span>宜蘭縣</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/HualienCounty"}><span>花蓮縣</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/YunlinCounty"} onClick={this.stopstate}><span>雲林縣</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/ChiayiCounty"} onClick={this.stopstate}><span>嘉義縣</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/Chiayi"} onClick={this.stopstate}><span>嘉義市</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/PingtungCounty"} onClick={this.stopstate}><span>屏東縣</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/YilanCounty"} onClick={this.stopstate}><span>宜蘭縣</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/HualienCounty"} onClick={this.stopstate}><span>花蓮縣</span></Link>
                             </div>
                             <div>
-                                <Link class="nav-link" to={"/scenicSpot/TaitungCounty"}><span>臺東縣</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/KinmenCounty"}><span>金門縣</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/PenghuCounty"}><span>澎湖縣</span></Link>
-                                <Link class="nav-link" to={"/scenicSpot/LienchiangCounty"}><span>連江縣</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/TaitungCounty"} onClick={this.stopstate}><span>臺東縣</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/KinmenCounty"} onClick={this.stopstate}><span>金門縣</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/PenghuCounty"} onClick={this.stopstate}><span>澎湖縣</span></Link>
+                                <Link class="nav-link" to={"/scenicSpot/LienchiangCounty"} onClick={this.stopstate}><span>連江縣</span></Link>
                             </div>
                         </div>
                     </li>
