@@ -10,6 +10,7 @@ var stopupdate = false;
 require('location.png');
 require('logo.png');
 
+//串接資料
 function fetchData(cur_url){
     $.ajax({
         url: cur_url,
